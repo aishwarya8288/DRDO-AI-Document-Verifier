@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block title %}Features{% endblock %}
+
+{% block content %}
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Advanced CSS Styling -->
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #ebf3ff, #dce9ff);
+    color: #1a1a1a;
+  }
+
+  h2.text-center {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    color:rgb(6, 36, 126);
+    text-shadow: 0 0 8px rgba(65, 105, 225, 0.2);
+  }
+
+  .feature-card {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 40px rgba(65, 105, 225, 0.15);
+    padding: 20px;
+    transition: all 0.35s ease-in-out;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(65, 105, 225, 0.25);
+  }
+
+  .feature-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .feature-card:hover img {
+    filter: brightness(1.1);
+    transform: scale(1.03);
+  }
+
+  .feature-card h4 {
+    font-weight: 600;
+    color: #00264d;
+    margin-top: 10px;
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+    color: #333333;
+  }
+
+  .row.g-4 {
+    row-gap: 2rem;
+  }
+</style>
+
+<div class="container mt-5">
+  <h2 class="text-center">Features of Our IDP System</h2>
+  <div class="row g-4">
+    <!-- Feature 1 -->
+    <div class="col-md-4">
+      <div class="feature-card">
+        {% load static %}
+
+<img src="{% static 'C:\Users\aishw\Downloads\IDP\IDP\static\img\Doc Verify.jpg' %}" alt="Document Verification">
+
+        <h4>Document Verification</h4>
+        <p>AI-powered OCR and data validation for Aadhaar, marksheets, and certificates.</p>
+      </div>
+    </div>
+
+    <!-- Feature 2 -->
+    <div class="col-md-4">
+      <div class="feature-card">
+        <img src="{% static 'C:\Users\aishw\Downloads\IDP\IDP\static\img\Security.jpg' %}" alt="Secure Data">
+        <h4>Secure Data Handling</h4>
+        <p>All uploaded documents are securely handled and stored with encryption.</p>
+      </div>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="col-md-4">
+      <div class="feature-card">
+        <img src="{% static 'C:\Users\aishw\Downloads\IDP\IDP\static\img\Mismatch.jpg' %}" alt="Mismatch Analytics">
+        <h4>Mismatch Analytics</h4>
+        <p>Generate graphs and view detailed mismatch reports with intuitive visuals.</p>
+      </div>
+    </div>
+
+    <!-- Feature 4 -->
+    <div class="col-md-4">
+      <div class="feature-card">
+        <img src="{% static 'C:\Users\aishw\Downloads\IDP\IDP\static\img\Real Time.jpg' %}" alt="Real-Time Tracking">
+        <h4>Real-Time Status Tracking</h4>
+        <p>Users can check the real-time progress of document verification with step-by-step updates.</p>
+      </div>
+    </div>
+
+    <!-- Feature 5 -->
+    <div class="col-md-4">
+      <div class="feature-card">
+        <img src="{% static 'C:\Users\aishw\Downloads\IDP\IDP\static\img\Summary report.jpg' %}" alt="Auto Reports">
+        <h4>Auto-Generated Summary Reports</h4>
+        <p>Once verified, a downloadable summary is generated with validation status and highlights.</p>
+      </div>
+    </div>
+
+    <!-- Feature 6 -->
+    <div class="col-md-4">
+      <div class="feature-card">
+        <img src="{% static 'C:\Users\aishw\Downloads\IDP\IDP\static\img\Role Based.png' %}" alt="Role-Based Access">
+        <h4>Role-Based Access Control</h4>
+        <p>Separate dashboards for Admins, Verifiers, and Users ensure a clutter-free experience.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

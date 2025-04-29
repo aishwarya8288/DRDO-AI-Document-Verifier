@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; overflow-x: hidden;">
+
+<!-- Animated background elements -->
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;">
+    <div style="position: absolute; width: 300px; height: 300px; background: rgba(0, 123, 255, 0.05); border-radius: 50%; filter: blur(60px); top: 20%; left: 10%; animation: float 15s ease-in-out infinite;"></div>
+    <div style="position: absolute; width: 400px; height: 400px; background: rgba(108, 117, 125, 0.05); border-radius: 50%; filter: blur(60px); bottom: 15%; right: 10%; animation: float 18s ease-in-out infinite reverse;"></div>
+</div>
+
+<!-- Main container -->
+<div style="width: 100%; max-width: 500px; padding: 2rem; margin: 1rem; background: rgba(255, 255, 255, 0.95); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.3); transform: translateY(20px); opacity: 0; animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;">
+
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <div style="width: 80px; height: 80px; margin: 0 auto 1rem; background: linear-gradient(135deg, #007bff, #6610f2); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3); animation: pulse 2s infinite alternate;">
+            <i class="fas fa-file-alt" style="font-size: 2rem; color: white;"></i>
+        </div>
+        <h1 style="margin: 0; font-size: 1.8rem; font-weight: 700; color: #212529; position: relative; padding-bottom: 0.5rem;">
+            Document Verification
+            <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(90deg, #007bff, #6610f2); border-radius: 2px;"></span>
+        </h1>
+        <p style="color: #6c757d; margin-top: 0.5rem;">Verify your documents securely</p>
+    </div>
+
+    <!-- Messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div style="padding: 1rem; margin-bottom: 1.5rem; border-radius: 8px; background: {% if message.tags == 'success' %}rgba(40, 167, 69, 0.15){% elif message.tags == 'error' or message.tags == 'danger' %}rgba(220, 53, 69, 0.15){% else %}rgba(23, 162, 184, 0.15){% endif %}; color: {% if message.tags == 'success' %}#28a745{% elif message.tags == 'error' or message.tags == 'danger' %}#dc3545{% else %}#17a2b8{% endif %}; border-left: 4px solid {% if message.tags == 'success' %}#28a745{% elif message.tags == 'error' or message.tags == 'danger' %}#dc3545{% else %}#17a2b8{% endif %}; animation: fadeIn 0.5s ease-out;">
+                <strong><i class="fas fa-{% if message.tags == 'success' %}check-circle{% elif message.tags == 'error' or message.tags == 'danger' %}exclamation-circle{% else %}info-circle{% endif %}"></i> {{ message.tags|title }}:</strong> {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Form -->
+    <form method="POST" action="" style="opacity: 0; transform: translateY(10px); animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;">
+        {% csrf_token %}
+        
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #495057; font-size: 0.9375rem;">Select Document to Verify</label>
+            <div style="position: relative;">
+                <select name="document_type" required style="width: 100%; padding: 0.875rem 1rem; border: 1px solid #dee2e6; border-radius: 8px; font-size: 0.9375rem; appearance: none; background-color: white; background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22currentColor%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3e%3cpolyline points=%226 9 12 15 18 9%22/%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1rem; transition: all 0.2s ease; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);">
+                    <option disabled selected value="">-- Select a Document --</option>
+                    <option value="aadhaar">Aadhaar Card</option>
+                    <option value="ews">EWS Certificate</option>
+                    <option value="caste">Caste Certificate</option>
+                    <option value="income">Income Certificate</option>
+                    <option value="marksheet">Marksheet</option>
+                </select>
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 8px; pointer-events: none; box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); opacity: 0; transition: opacity 0.2s ease;"></div>
+            </div>
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 0.875rem; background: linear-gradient(135deg, #007bff, #6610f2); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); position: relative; overflow: hidden;">
+            <span style="position: relative; z-index: 2;">
+                <i class="fas fa-check-circle"></i> Verify Document
+            </span>
+            <span style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #6610f2, #007bff); opacity: 0; transition: opacity 0.3s ease; z-index: 1;"></span>
+        </button>
+    </form>
+</div>
+
+<style>
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(10px, 10px) rotate(2deg); }
+        50% { transform: translate(20px, 0) rotate(-1deg); }
+        75% { transform: translate(10px, -10px) rotate(1deg); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3); }
+        100% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    select:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+
+    select:focus + div {
+        opacity: 1;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    button:hover span:last-child {
+        opacity: 1;
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.querySelector('select[name="document_type"]');
+        const button = document.querySelector('button[type="submit"]');
+        
+        if (select) {
+            select.addEventListener('focus', function () {
+                this.parentElement.querySelector('div').style.opacity = '1';
+            });
+            
+            select.addEventListener('blur', function () {
+                this.parentElement.querySelector('div').style.opacity = '0';
+            });
+        }
+
+        if (button) {
+            button.addEventListener('mouseenter', function () {
+                this.querySelector('span:last-child').style.opacity = '1';
+            });
+
+            button.addEventListener('mouseleave', function () {
+                this.querySelector('span:last-child').style.opacity = '0';
+            });
+        }
+    });
+</script>
+</body>
+</html>

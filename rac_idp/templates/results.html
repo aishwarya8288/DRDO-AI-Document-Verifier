@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Results</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .table-container {
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        .matched {
+            background-color: #d4edda; /* Light green for matches */
+            color: #155724;
+        }
+
+        .mismatched {
+            background-color: #f8d7da; /* Light red for mismatches */
+            color: #721c24;
+        }
+
+        .neutral {
+            background-color: #f1f1f1; /* Neutral for no change */
+            color: #333;
+        }
+
+        .mismatch-details {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #6c757d;
+        }
+
+        .mismatch-summary {
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .mismatch-summary span {
+            font-size: 1.5rem;
+            color: #e74c3c;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 30px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+     <div class="container">
+        <h2>Application Verification Results for {{ applicant.name }}</h2>
+
+        {% if application_results %}
+            <div class="section">
+                <h3>Latest Document Verified: {{ application_results.0.document_type }} <br> Submitted on: {{ application_results.0.timestamp|date:"Y-m-d H:i" }}</h3>
+            </div>
+
+            <!-- Mismatches in Data -->
+            <div class="section">
+                <h3>Data Mismatches</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Expected Data</th>
+                                <th>Extracted Data</th>
+                                <th>Mismatch (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for mismatch in formatted_mismatches %}
+                                <tr class="{% if mismatch.mismatch_percentage > 0 %} mismatched {% else %} matched {% endif %}">
+                                    <td>{{ mismatch.field }}</td>
+                                    <td>{{ mismatch.expected }}</td>
+                                    <td>{{ mismatch.extracted }}</td>
+                                    <td>
+                                        {% if mismatch.mismatch_percentage > 0 %}
+                                            <strong style="color: red;">{{ mismatch.mismatch_percentage }}%</strong>
+                                        {% else %}
+                                            <strong style="color: green;">0% (Matched)</strong>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Mismatch Summary -->
+            {% if formatted_mismatches %}
+                <div class="mismatch-summary">
+                    <p>Total Mismatches: <span>{{ formatted_mismatches|length }}</span></p>
+                    <div class="alert">
+                        Cannot Proceed.Document Not verified successfully.
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert">
+                    No mismatches found. All data matched successfully!
+                </div>
+                <a href="#" class="button">Proceed</a>
+
+            {% endif %}
+
+            <!-- Mismatch Visualization -->
+            <div class="section">
+                <h3>Mismatch Visualization</h3>
+                {% if mismatch_plot_path %}
+                    <img src="{{ mismatch_plot_path }}" alt="Mismatch Chart">
+                {% else %}
+                    <p style="text-align: center; color: green;">No visualization needed as all data matched.</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="alert">
+                No verification results found for this applicant.
+            </div>
+        {% endif %}
+
+        <!-- Back Button -->
+        <a href="{% url 'verify_document' applicant.id %}" class="button">Verify Other Documents</a>
+        <a href="{% url 'applicant_dashboard'  %}" class="button">Go to Dashboard</a>
+
+    </div>
+
+
+</body>
+
+</html>
+

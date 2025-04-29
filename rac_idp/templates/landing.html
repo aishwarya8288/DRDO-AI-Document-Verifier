@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to IDP System{% endblock %}
+
+{% block content %}
+<!-- Background Video Section -->
+<div style="position: relative; width: 100%; height: 100vh; overflow: hidden;">
+    <video autoplay muted loop style="position: absolute; width: 100%; height: 100%; object-fit: cover;">
+        <source src={% static "C:\Users\aishw\Downloads\IDP\IDP\static\video\Background.mp4" %} type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div style="position: absolute; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6);"></div>
+</div>
+
+<!-- Hero Section (Now below video) -->
+<section class="hero-section">
+    <div>
+        <h1>Automated Document Verification for DRDO's RAC</h1>
+        <p>Fast, Accurate, and AI-powered Validation for Job Applications</p>
+        <a href="{% url 'signup' %}" class="apply-btn">Apply Now</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section style="padding: 60px 0; background: #f8f9fa; text-align: center;">
+    <h2 style="font-size: 2.5rem; color: #333; margin-bottom: 40px;">Why Choose Our IDP System?</h2>
+    
+    <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        
+        <!-- Feature 1 -->
+        <div class="feature-card">
+            <img src={% static "C:\Users\aishw\Downloads\IDP\IDP\static\img\document-icon.png.jpg" %} alt="Document Verification">
+            <h4>Document Verification</h4>
+            <p>AI-powered validation of Aadhaar, Caste, EWS, and Academic documents.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+            <img src={% static "C:\Users\aishw\Downloads\IDP\IDP\static\img\mismatch-icon.png.jpg" %} alt="Real-time Mismatch Analysis">
+            <h4>Real-time Mismatch Analysis</h4>
+            <p>Instant feedback on discrepancies between form data and uploaded documents.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+            <img src={% static "C:\Users\aishw\Downloads\IDP\IDP\static\img\secure-icon.png.jpg" %} alt="Secure & Trusted">
+            <h4>Secure & Trusted</h4>
+            <p>Designed for Document Verification with robust security measures to protect data.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Inline CSS for Advanced Animations -->
+<style>
+    /* Hero Section (Now below the video) */
+    .hero-section {
+        text-align: center;
+        color: white;
+        background: linear-gradient(to bottom, rgba(9, 33, 140, 0.7), rgba(8, 12, 88, 0.9));
+        padding: 80px 20px;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero-section h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        opacity: 0;
+        animation: slideUp 1.2s ease-in-out forwards;
+    }
+
+    .hero-section p {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: slideUp 1.5s ease-in-out forwards;
+    }
+
+    /* Apply Now Button */
+    .apply-btn {
+        font-size: 1.2rem;
+        padding: 12px 30px;
+        border-radius: 8px;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        transition: 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        animation: slideUp 1.8s ease-in-out forwards;
+    }
+
+    /* Button Glow Effect */
+    .apply-btn:hover {
+        background: #0056b3;
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+    }
+
+    /* Feature Card Styles */
+    .feature-card {
+        width: 300px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .feature-card img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 15px;
+    }
+
+    .feature-card h4 {
+        font-size: 1.5rem;
+        color: #007bff;
+    }
+
+    .feature-card p {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    /* Hover Effect */
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .feature-card {
+            width: 90%;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+        }
+
+        .apply-btn {
+            font-size: 1rem;
+            padding: 10px 25px;
+        }
+    }
+
+
+
+</style>
+
+{% comment %} {% endblock %} {% endcomment %}
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-about">
+            <h3>About Us</h3>
+            <p>We provide an AI-driven document verification system to ensure fast and secure processing for DRDO's RAC applications.</p>
+        </div>
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Apply Now</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 IDP System. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- Inline CSS for Enhancements -->
+<style>
+    /* Footer Styling */
+    .footer {
+        background: #081c3a;
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .footer-about, .footer-links, .footer-social {
+        width: 30%;
+    }
+
+    .footer h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #007bff;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links ul li {
+        margin: 10px 0;
+    }
+
+    .footer-links ul li a {
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
+
+    .social-icon {
+        font-size: 1.8rem;
+        margin: 0 10px;
+        color: white;
+        transition: 0.3s ease-in-out;
+    }
+
+    .social-icon:hover {
+        color: #007bff;
+        transform: scale(1.2);
+    }
+
+    .footer-bottom {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+    }
+
+    /* Social Icons Animation */
+    @keyframes iconBounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    .social-icon:hover {
+        animation: iconBounce 0.5s ease-in-out;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 568px) {
+        .footer-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-about, .footer-links, .footer-social {
+            width: 90%;
+            margin-bottom: 20px;
+        }
+    }
+
+</style>
+
+{% endblock %}

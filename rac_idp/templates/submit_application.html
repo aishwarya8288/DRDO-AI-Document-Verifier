@@ -1,0 +1,503 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}APPLICANT FORM{% endblock %}
+{% block content %}
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #ec4899;
+            --dark: #111827;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+        }
+
+        .application-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .form-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9375rem;
+            transition: all 0.15s ease;
+            background-color: white;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+            outline: none;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+        .form-section h5 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .form-section h5 i {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        /* Hide caste and EWS certificate fields initially */
+       
+
+        .hidden-field{
+    display: block;
+}
+
+        /* Footer Styling */
+    .footer {
+        background: #081c3a;
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .footer-about, .footer-links, .footer-social {
+        width: 30%;
+    }
+
+    .footer h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #007bff;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links ul li {
+        margin: 10px 0;
+    }
+
+    .footer-links ul li a {
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+        color: #007bff;
+        text-decoration: underline;
+    }
+
+    .social-icon {
+        font-size: 1.8rem;
+        margin: 0 10px;
+        color: white;
+        transition: 0.3s ease-in-out;
+    }
+
+    .social-icon:hover {
+        color: #007bff;
+        transform: scale(1.2);
+    }
+
+    .footer-bottom {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+    }
+
+    /* Social Icons Animation */
+    @keyframes iconBounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    .social-icon:hover {
+        animation: iconBounce 0.5s ease-in-out;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 568px) {
+        .footer-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-about, .footer-links, .footer-social {
+            width: 90%;
+            margin-bottom: 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <div class="application-container">
+        <h2><i class="fas fa-file-alt"></i> Document Verification </h2>
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-section">
+                <h5><i class="fas fa-user"></i> Personal Information</h5>
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Full Name</label>
+                        {{ form.name }}
+                    </div>
+            
+                   
+            
+                    <div class="mb-3">
+                        <label for="id_date_of_birth" class="form-label">Date of Birth</label>
+                        {{ form.date_of_birth }}
+                    </div>
+            
+                    <div class="mb-3">
+                        <label for="id_phone" class="form-label">Phone</label>
+                        {{ form.phone }}
+                    </div>
+            
+                    <div class="mb-3">
+                        <label for="id_address" class="form-label">Address</label>
+                        {{ form.address }}
+                    </div>
+                    
+            
+                    <div class="mb-3">
+                        <label for="id_aadhar_number" class="form-label">Aadhaar Number</label>
+                        {{ form.aadhar_number }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_aadhaar_document" class="form-label">Upload Aadhaar</label>
+                        {{ form.aadhaar_document }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_university" class="form-label">University</label>
+                        {{ form.university }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_course" class="form-label">Course</label>
+                        {{ form.course }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_year_of_passing" class="form-label">Year of Passing</label>
+                        {{ form.year_of_passing }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_percentage" class="form-label">Percentage</label>
+                        {{ form.percentage }}
+                    </div>                  
+            
+                    <div class="mb-3">
+                        <label for="id_marksheet_document" class="form-label">Upload Marksheet</label>
+                        {{ form.marksheet_document }}
+                    </div>
+
+                    <div >
+                        <label for="id_caste_category" class="form-label">Caste Category</label>
+                        {{ form.caste_category }}
+                    </div>
+            
+                   
+            
+                    <div id="ewsFields" style="display: none;">
+                        <h4>EWS Certificate Details</h4>
+                        <div class="mb-3">
+                            <label for="id_ews_certificate_number" class="form-label">EWS Certificate Number</label>
+                            {{ form.ews_certificate_number }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_ews_issuing_authority" class="form-label">Issuing Authority</label>
+                            {{ form.ews_issuing_authority }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_ews_date_of_issue" class="form-label">Date of Issue</label>
+                            {{ form.ews_date_of_issue }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_ews_family_income" class="form-label">Annual Family Income</label>
+                            {{ form.ews_family_income }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_ews_certificate_document" class="form-label">Upload EWS Certificate</label>
+                            {{ form.ews_certificate_document }}
+                        </div>
+                    </div>
+            
+                    <div id="casteFields" style="display: none;">
+                        <h4>Caste Certificate Details</h4>
+                        <div class="mb-3">
+                            <label for="id_caste_certificate_number" class="form-label">Caste Certificate Number</label>
+                            {{ form.caste_certificate_number }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_caste_issuing_authority" class="form-label">Issuing Authority</label>
+                            {{ form.caste_issuing_authority }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_caste_date_of_issue" class="form-label">Date of Issue</label>
+                            {{ form.caste_date_of_issue }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_caste_validity_period" class="form-label">Validity Period</label>
+                            {{ form.caste_validity_period }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_caste_certificate_document" class="form-label">Upload Caste Certificate</label>
+                            {{ form.caste_certificate_document }}
+                        </div>
+                    </div>
+            
+                    <div id="incomeFields" >
+                        <h4>Income Certificate Details</h4>
+                        <div id=""></div>
+                        <div class="mb-3">
+                            <label for="id_income_certificate_number" class="form-label">Income Certificate Number</label>
+                            {{ form.income_certificate_number }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_income_issuing_authority" class="form-label">Issuing Authority</label>
+                            {{ form.income_issuing_authority }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_income_date_of_issue" class="form-label">Date of Issue</label>
+                            {{ form.income_date_of_issue }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_income_validity_period" class="form-label">Validity Period</label>
+                            {{ form.income_validity_period }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_annual_family_income" class="form-label">Annual Family Income</label>
+                            {{ form.annual_family_income }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_income_certificate_document" class="form-label">Upload Income Certificate</label>
+                            {{ form.income_certificate_document }}
+                        </div>
+                    </div>
+            
+
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Submit Application
+            </button>
+        </form>
+    </div>
+
+   
+
+   
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    let casteCategory = document.getElementById("id_caste_category"); // Dropdown
+    let ewsFields = document.getElementById("ewsFields"); // EWS fields container
+    let casteFields = document.getElementById("casteFields"); // Caste fields container
+
+    function toggleFields() {
+        let selectedValue = casteCategory.value || "GENERAL"; // Default to "GENERAL" if empty
+
+        // Hide both EWS & Caste fields initially
+        ewsFields.style.display = 'none';
+        casteFields.style.display = 'none';
+
+        // Only show the EWS fields if "EWS" is selected
+        if (selectedValue === "EWS") {
+            ewsFields.style.display = 'block'; // Show EWS fields
+        } else if (selectedValue !== "General") {
+            // Only show the Caste fields if the selected value is not "General"
+            casteFields.style.display = 'block'; // Show Caste fields
+        }
+    }
+
+    // Call function on page load to ensure the correct fields are shown/hidden
+    toggleFields();
+
+    // Listen for changes in caste selection
+    casteCategory.addEventListener("change", toggleFields);
+});
+    
+
+    
+
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const colors = ['rgba(59, 130, 246, 0.03)', 'rgba(124, 58, 237, 0.03)'];
+
+            for (let i = 0; i < 8; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+
+                const size = Math.random() * 300 + 100;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * -20;
+
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.background = color;
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                element.style.animationDuration = `${duration}s`;
+                element.style.animationDelay = `${delay}s`;
+
+                container.appendChild(element);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingElements();
+        });
+    </script>
+
+ <!-- Footer Section -->
+ <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-about">
+            <h3>About Us</h3>
+            <p>We provide an AI-driven document verification system to ensure fast and secure processing for DRDO's RAC applications.</p>
+        </div>
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Apply Now</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 IDP System. All Rights Reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}
+

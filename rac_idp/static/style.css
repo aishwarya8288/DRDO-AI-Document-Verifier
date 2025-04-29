@@ -1,0 +1,63 @@
+/* General Styles */
+body {
+    background-color: #121212;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section */
+.hero {
+    background: url("../images/hero-bg.jpg") no-repeat center center/cover;
+    height: 90vh;
+    text-align: center;
+    position: relative;
+}
+.hero h1 {
+    font-size: 3rem;
+}
+.hero p {
+    font-size: 1.3rem;
+}
+
+/* Features Section */
+.features {
+    background: #1a1a2e;
+}
+.feature-box {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 15px 0;
+    transition: transform 0.3s ease;
+}
+.feature-box:hover {
+    transform: scale(1.05);
+}
+.feature-icon {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+.footer {
+    background: #000;
+    padding: 10px 0;
+}
+
+.card {
+    background-color: #1a1a2e;
+    color: white;
+    border-radius: 10px;
+}
+.card-header {
+    font-size: 1.3rem;
+}
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #218838;
+}

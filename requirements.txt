@@ -1,0 +1,41 @@
+# Django and core backend
+Django>=4.2
+gunicorn
+
+# Google Cloud dependencies
+google-cloud-documentai
+google-cloud-storage
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+oauth2client
+
+# Hugging Face Transformers
+transformers
+torch
+
+# Tesseract OCR
+pytesseract
+
+# PDF handling
+PyMuPDF  # for `fitz`
+pdf2image
+pdfplumber
+python-docx
+
+# Image processing
+opencv-python
+Pillow
+
+# Plotting and analysis
+matplotlib
+seaborn
+pandas
+
+# For file type detection
+python-magic
+
+# Others
+requests
+

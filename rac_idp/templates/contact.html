@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<!-- AOS (Animate on Scroll) Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #f0f4ff, #d9eaff);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  h2.text-center {
+    font-weight: 600;
+    color: #003366;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 1s ease-in-out;
+  }
+
+  .form-label {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .form-control {
+    border-radius: 12px;
+    border: 1px solid #cfd9df;
+    transition: 0.3s ease;
+  }
+
+  .form-control:focus {
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.4);
+    border-color: #4169E1;
+  }
+
+  .btn-primary {
+    background: #4169E1;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+  }
+
+  .btn-primary:hover {
+    background: #3451b2;
+    transform: scale(1.05);
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<div class="container mt-5" data-aos="fade-up">
+  <h2 class="text-center mb-4">Contact Us</h2>
+
+  <!-- Django messages -->
+  {% if messages %}
+    <div class="mb-4">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <div class="glass-card" data-aos="zoom-in">
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Your Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Your Message</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mt-3">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  AOS.init({ duration: 1000 });
+</script>
+{% endblock %}
