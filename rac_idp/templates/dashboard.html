@@ -1,617 +1,187 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Applicant Dashboard{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Consulting Firm | AI & Data Solutions</title>
+    <!-- Tailwind CSS via CDN (for production, use npm/postCSS) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0070C0',
+                        primaryDark: '#003B73',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-primary">YourConsulting</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="hover:text-primary transition">Services</a>
+                <a href="#industries" class="hover:text-primary transition">Industries</a>
+                <a href="#about" class="hover:text-primary transition">About Us</a>
+                <a href="#careers" class="hover:text-primary transition">Careers</a>
+                <a href="#contact" class="hover:text-primary transition">Contact</a>
+            </div>
+            <!-- Mobile menu button -->
+            <button class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
 
-{% block content %}
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary/80 to-primaryDark/80 bg-cover bg-center h-screen flex items-center pt-20" style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+        <div class="container mx-auto px-6 text-center text-white">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Innovative AI & Data Solutions</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">We deliver cutting-edge technology consulting to transform your business with artificial intelligence, machine learning, and data analytics.</p>
+            <a href="#contact" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-primaryDark hover:text-white transition inline-block">Get Started</a>
+        </div>
+    </section>
 
-
-<div class="dashboard-container">
-    <!-- Animated Background Elements -->
-    <div class="dashboard-bg-elements">
-        <div class="bg-circle circle-1"></div>
-        <div class="bg-circle circle-2"></div>
-        <div class="bg-circle circle-3"></div>
-    </div>
-
-    <div class="container-fluid">
-        <!-- Header Section -->
-        <div class="dashboard-header">
-            <div class="welcome-message">
-                <h1 class="animate__animated animate__fadeInDown">Welcome back, <span class="text-gradient">{{ user.username }}</span>!</h1>
-                <p class="animate__animated animate__fadeIn animate__delay-1s">Here's what's happening with your applications today</p>
+    <!-- Services Section -->
+    <section id="services" class="py-20 container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-primaryDark mb-12">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Service Card 1 -->
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden transition-transform hover:-translate-y-2">
+                <div class="h-48 bg-gray-200"></div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-3">AI & Machine Learning</h3>
+                    <p class="text-gray-600">Custom AI solutions including NLP, computer vision, and predictive analytics tailored to your business needs.</p>
+                </div>
             </div>
             
+            <!-- Service Card 2 -->
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden transition-transform hover:-translate-y-2">
+                <div class="h-48 bg-gray-200"></div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-3">Data Analytics</h3>
+                    <p class="text-gray-600">Power BI, Tableau, and SQL solutions to turn your data into actionable business insights.</p>
+                </div>
+            </div>
+            
+            <!-- Service Card 3 -->
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden transition-transform hover:-translate-y-2">
+                <div class="h-48 bg-gray-200"></div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-primary mb-3">Cloud Computing</h3>
+                    <p class="text-gray-600">AWS and Azure cloud architecture, migration, and optimization services.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        
-        </div>
-
-        <!-- Main Action Card -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-6">
-                <div class="action-card animate__animated animate__zoomIn animate__delay-1s">
-                    <div class="action-content">
-                        <h2><i class="fas fa-rocket"></i> Ready for your next opportunity?</h2>
-                        <p>Submit a new application and take the next step in your career</p>
-                        <a href="{% url 'submit_application' %}" class="btn btn-glow">
-                            Verify Now <i class="fas fa-arrow-right"></i>
-                        </a>
+    <!-- Projects Showcase (Added from your resume) -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-primaryDark mb-12">Featured Projects</h2>
+            
+            <!-- DRDO Project -->
+            <div class="mb-16 bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-gray-200 h-64 md:h-auto"></div>
+                    <div class="p-8 md:w-2/3">
+                        <h3 class="text-2xl font-bold text-primary mb-4">AI-Powered Document Verification for DRDO</h3>
+                        <p class="text-gray-600 mb-4">Developed a multilingual document processing system using rule-based NLP techniques with 98% accuracy in data extraction.</p>
+                        <ul class="mb-4 space-y-2">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Reduced verification time by 70% (48hrs → 15min)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Automated classification of 10K+ documents</span>
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Django</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">NLP</span>
+                        </div>
                     </div>
-                    <div class="action-decoration">
-                        <div class="decoration-item"></div>
-                        <div class="decoration-item"></div>
+                </div>
+            </div>
+            
+            <!-- Farmers Market Project -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex flex-row-reverse">
+                    <div class="md:w-1/3 bg-gray-200 h-64 md:h-auto"></div>
+                    <div class="p-8 md:w-2/3">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Direct Market Access for Farmers</h3>
+                        <p class="text-gray-600 mb-4">Developed a farmer-to-buyer web platform that eliminated middlemen, connecting 1,200+ farmers directly to markets.</p>
+                        <ul class="mb-4 space-y-2">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Increased farmer profits by 30%</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Reduced transaction time by 40%</span>
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">React</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Power BI</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Machine Learning</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Application History Section -->
-        <div class="application-history">
-            <div class="section-header animate__animated animate__fadeIn">
-                <h2><i class="fas fa-history"></i> Application History</h2>
-                <p>Your recent submissions and their status</p>
-
+    <!-- Footer -->
+    <footer class="bg-primaryDark text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">AI & Machine Learning</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Data Analytics</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Cloud Computing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">News</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li><a href="mailto:info@yourconsulting.com" class="text-gray-300 hover:text-white transition">info@yourconsulting.com</a></li>
+                        <li><a href="tel:+15551234567" class="text-gray-300 hover:text-white transition">+1 (555) 123-4567</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Visit Us</a></li>
+                    </ul>
+                </div>
             </div>
-            
-            {% if past_results %}
-            <div class="table-responsive animate__animated animate__fadeInUp">
-                <table class="table app-table">
-                    <thead>
-                        <tr>
-                            <th>Application ID</th>
-                            <th>Date Submitted</th>
-                           <th>Mismatch </th>
-                            <th>Mismatches</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for result in past_results %}
-                        <tr class="animate__animated animate__fadeIn">
-                            <td>#APP-{{ result.id|stringformat:"04d" }}</td>
-                            <td>{{ result.application_date|date:"M d, Y" }}</td>
-                            <td>{{ result.mismatch_percentage }}</td>
-                            
-                            <td>
-                                <div class="mismatch-indicator">
-                                    {% if result.mismatches|length > 0 %}
-                                    <span class="badge badge-pill badge-danger">{{ result.mismatches|length }}</span>
-                                    {% else %}
-                                    <span class="badge badge-pill badge-success">0</span>
-                                    {% endif %}
-                                </div>
-                            </td>
-                            <td>
-                                <a href="{% url 'view_result' result.id %}" class="btn btn-details">
-                                    <i class="fas fa-eye"></i>View Details
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        
-                    </tbody>
-                </table>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2024 YourConsulting. All rights reserved.</p>
             </div>
-            {% else %}
-            <div class="empty-state animate__animated animate__fadeIn">
-                <img src="{% static 'images/empty-state.svg' %}" alt="No applications yet">
-                <h3>No applications submitted yet</h3>
-                <p>Get started by submitting your first application</p>
-                <a href="{% url 'submit_application' %}" class="btn btn-primary">Apply Now</a>
-            </div>
-            {% endif %}
         </div>
-    </div>
-</div>
-
-<!-- Modern CSS with Animations -->
-<style>
-    /* Base Styles */
-    :root {
-        --primary: #4361ee;
-        --primary-light: #4895ef;
-        --primary-dark: #3a0ca3;
-        --secondary: #3f37c9;
-        --success: #4cc9f0;
-        --danger: #f72585;
-        --warning: #f8961e;
-        --info: #43aa8b;
-        --dark: #1a1a2e;
-        --light: #f8f9fa;
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
-
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color:rgb(202, 230, 250);
-        color:rgb(7, 41, 95);
-        overflow-x: hidden;
-    }
-
-    /* Dashboard Container */
-    .dashboard-container {
-        position: relative;
-        min-height: 100vh;
-        padding: 2rem 0;
-        overflow: hidden;
-    }
-
-    /* Background Elements */
-    .dashboard-bg-elements {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        overflow: hidden;
-    }
-
-    .bg-circle {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(60px);
-        opacity: 0.15;
-    }
-
-    .circle-1 {
-        width: 300px;
-        height: 300px;
-        background: var(--primary);
-        top: -100px;
-        left: -100px;
-        animation: float 15s infinite ease-in-out;
-    }
-
-    .circle-2 {
-        width: 400px;
-        height: 400px;
-        background: var(--secondary);
-        bottom: -150px;
-        right: -150px;
-        animation: float 18s infinite ease-in-out reverse;
-    }
-
-    .circle-3 {
-        width: 200px;
-        height: 200px;
-        background: var(--success);
-        top: 40%;
-        right: 10%;
-        animation: float 12s infinite ease-in-out;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translate(0, 0); }
-        25% { transform: translate(50px, 50px); }
-        50% { transform: translate(100px, 0); }
-        75% { transform: translate(50px, -50px); }
-    }
-
-    /* Header Section */
-    .dashboard-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2.5rem;
-        padding: 0 1rem;
-    }
-
-    .welcome-message h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-
-    .text-gradient {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-    }
-
-    .welcome-message p {
-        font-size: 1.1rem;
-        color: #64748b;
-    }
-
-    .user-avatar {
-        position: relative;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .user-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .status-indicator {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        width: 12px;
-        height: 12px;
-        background: var(--success);
-        border-radius: 50%;
-        border: 2px solid white;
-    }
-
-    /* Stats Cards */
-    .stats-row {
-        margin-bottom: 2rem;
-    }
-
-    .stat-card {
-        border: none;
-        border-radius: 15px;
-        padding: 1.5rem;
-        color: white;
-        height: 100%;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .stat-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .stat-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-    }
-
-    .card-1 {
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    }
-
-    .card-2 {
-        background: linear-gradient(135deg, var(--success), #4cc9f0);
-    }
-
-    .card-3 {
-        background: linear-gradient(135deg, var(--warning), #f8961e);
-    }
-
-    .card-4 {
-        background: linear-gradient(135deg, var(--secondary), #3f37c9);
-    }
-
-    .stat-icon {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        opacity: 0.8;
-    }
-
-    .stat-content h3 {
-        font-size: 1rem;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-        opacity: 0.9;
-    }
-
-    .stat-content .count {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin: 0;
-    }
-
-    /* Action Card */
-    .action-card {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .action-content h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: var(--dark);
-    }
-
-    .action-content h2 i {
-        color: var(--primary);
-        margin-right: 10px;
-    }
-
-    .action-content p {
-        color: #64748b;
-        margin-bottom: 1.5rem;
-    }
-
-    .btn-glow {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: white;
-        border: none;
-        padding: 0.8rem 2rem;
-        border-radius: 50px;
-        font-weight: 600;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-    }
-
-    .btn-glow:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
-        color: white;
-    }
-
-    .btn-glow::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: 0.5s;
-    }
-
-    .btn-glow:hover::before {
-        left: 100%;
-    }
-
-    .action-decoration {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        pointer-events: none;
-    }
-
-    .decoration-item {
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), transparent);
-        border-radius: 50%;
-        filter: blur(30px);
-        animation: decorationPulse 8s infinite ease-in-out;
-    }
-
-    .decoration-item:nth-child(2) {
-        animation-delay: 2s;
-    }
-
-    @keyframes decorationPulse {
-        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-        50% { transform: translate(20px, -20px) scale(1.2); opacity: 0.6; }
-    }
-
-    /* Application History */
-    .application-history {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        margin-top: 2rem;
-    }
-
-    .section-header {
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-
-    .section-header h2 {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--dark);
-        margin-bottom: 0.5rem;
-    }
-
-    .section-header h2 i {
-        color: var(--primary);
-        margin-right: 10px;
-    }
-
-    .section-header p {
-        color: #64748b;
-    }
-
-    /* Table Styles */
-    .app-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0 10px;
-    }
-
-    .app-table thead th {
-        background:rgb(4, 44, 84);
-        color: #64748b;
-        font-weight: 600;
-        padding: 1rem;
-        border: none;
-    }
-
-    .app-table tbody tr {
-        background: white;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .app-table tbody tr:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .app-table td {
-        padding: 1rem;
-        vertical-align: middle;
-        border-top: 1px solidrgb(81, 148, 216);
-        border-bottom: 1px solidrgb(56, 147, 237);
-    }
-
-    .app-table td:first-child {
-        border-left: 1px solid #f1f5f9;
-        border-radius: 10px 0 0 10px;
-    }
-
-    .app-table td:last-child {
-        border-right: 1px solidrgb(3, 26, 48);
-        border-radius: 0 10px 10px 0;
-    }
-
-    /* Status Badges */
-    .status-badge {
-        display: inline-block;
-        padding: 0.3rem 0.8rem;
-        border-radius: 50px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-
-    .status-verified {
-        background: rgba(76, 201, 240, 0.1);
-        color: var(--success);
-    }
-
-    .status-pending {
-        background: rgba(248, 150, 30, 0.1);
-        color: var(--warning);
-    }
-
-    .status-rejected {
-        background: rgba(247, 37, 133, 0.1);
-        color: var(--danger);
-    }
-
-    .status-in_review {
-        background: rgba(67, 97, 238, 0.1);
-        color: var(--primary);
-    }
-
-    /* Buttons */
-    .btn-details {
-        background: rgba(67, 97, 238, 0.1);
-        color: var(--primary);
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 50px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-
-    .btn-details:hover {
-        background: var(--primary);
-        color: white;
-    }
-
-    /* Empty State */
-    .empty-state {
-        text-align: center;
-        padding: 3rem 0;
-    }
-
-    .empty-state img {
-        max-width: 300px;
-        margin-bottom: 1.5rem;
-    }
-
-    .empty-state h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        color: var(--dark);
-    }
-
-    .empty-state p {
-        color: #64748b;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 992px) {
-        .dashboard-header {
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .user-avatar {
-            margin-top: 1rem;
-        }
-        
-        .welcome-message h1 {
-            font-size: 2rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .welcome-message h1 {
-            font-size: 1.8rem;
-        }
-        
-        .stat-card {
-            padding: 1.2rem;
-        }
-        
-        .action-content h2 {
-            font-size: 1.3rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .app-table {
-            display: block;
-            overflow-x: auto;
-        }
-        
-        .section-header h2 {
-            font-size: 1.5rem;
-        }
-    }
-</style>
-
-<!-- JavaScript for Enhanced Interactivity -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Animated counter for stats
-        const counters = document.querySelectorAll('.count');
-        const speed = 200;
-        
-        counters.forEach(counter => {
-            const animate = () => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                const increment = target / speed;
-                
-                if (count < target) {
-                    counter.innerText = Math.ceil(count + increment);
-                    setTimeout(animate, 10);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            
-            animate();
-        });
-        
-        // Table row animation
-        const tableRows = document.querySelectorAll('.app-table tbody tr');
-        tableRows.forEach((row, index) => {
-            row.style.animationDelay = `${index * 0.1}s`;
-        });
-    });
-</script>
-{% endblock %}
+    </footer>
+</body>
+</html>
