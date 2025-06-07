@@ -1,2 +1,3 @@
 # DRDO-AI-Document-Verifier
-Automates recruitment document processing using AI (Google Cloud Vision + Gemini). Extracts/validates certificates, scorecards, and multilingual docs. Django/Python backend with secure dashboard. Eliminates manual errors, speeds up verification.
+This AI-driven system automates recruitment document processing by leveraging Google Cloud Vision and Gemini for advanced OCR and multilingual document understanding. It efficiently extracts and validates critical documents such as certificates and scorecards, ensuring accurate verification against user inputs.
+Built on a robust Django/Python backend, the platform features a secure, user-friendly dashboard for seamless management and monitoring. By eliminating manual errors and accelerating the verification workflow, this solution significantly enhances operational efficiency for organizations like RAC–DRDO.
