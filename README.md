@@ -12,3 +12,37 @@ Built on a robust Django/Python backend, the platform features a secure, user-fr
 📈 **Insightful Discrepancy Analysis** — Detects and visually highlights mismatches with accuracy metrics  
 📊 **Interactive Dashboard** — Real-time monitoring of document processing status and verification outcomes  
 
+## ⚙️ Tech Stack
+
+**🖥️ Backend:** Django, Python  
+**🌐 Frontend:** HTML, CSS, Bootstrap, Django Templates  
+**🗄️ Database:** SQLite  
+**📄 Document Parsing:** Tesseract OCR, PyMuPDF, PDFMiner, LayoutLM *(optional)*  
+**📊 Visualization:** Matplotlib, Plotly  
+**🔐 Authentication:** Django Authentication System  
+
+## 🚀 Getting Started
+
+### 📦 Prerequisites
+- Python 3.8 or higher  
+- pip (Python package manager)  
+- Virtualenv (recommended for isolated environments)
+
+### 🛠️ Installation & Setup
+
+# Clone the repository
+git clone https://github.com/your-username/idp-system.git
+cd idp-system
+
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate   # On Windows use: venv\Scripts\activate
+
+# Install required packages
+pip install -r requirements.txt
+
+# Apply migrations
+python manage.py migrate
+
+# Run the server
+python manage.py runserver
