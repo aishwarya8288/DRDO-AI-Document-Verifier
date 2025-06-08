@@ -12,3 +12,12 @@ Built on a robust Django/Python backend, the platform features a secure, user-fr
 📈 Insightful Discrepancy Analysis — Detects and visually highlights mismatches with accuracy metrics
 📊 Interactive Dashboard — Real-time monitoring of document processing status and verification outcomes
 
+## 🔎 Core Capabilities
+
+🔐 **Secure User Access** — Streamlined signup and login system for applicants ensuring data privacy  
+📝 **Comprehensive Form Intake** — Capture detailed personal, educational, and professional information  
+📁 **Robust Document Upload** — Supports PDFs including identity proofs, certificates, and scorecards  
+🧠 **AI-Driven Data Extraction** — Utilizes Google Cloud OCR and NLP to intelligently extract both structured and freeform content  
+✔️ **Automated Data Validation** — Cross-checks extracted document data with submitted form entries for consistency  
+📈 **Insightful Discrepancy Analysis** — Detects and visually highlights mismatches with accuracy metrics  
+📊 **Interactive Dashboard** — Real-time monitoring of document processing status and verification outcomes  
