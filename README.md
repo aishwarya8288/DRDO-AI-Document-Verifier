@@ -30,7 +30,7 @@ Built on a robust Django/Python backend, the platform features a secure, user-fr
 
 ### 🛠️ Installation & Setup
 
-# Clone the repository
+#### Clone the repository
 git clone https://github.com/your-username/idp-system.git
 cd idp-system
 
@@ -41,8 +41,8 @@ source venv/bin/activate   # On Windows use: venv\Scripts\activate
 #### Install required packages
 pip install -r requirements.txt
 
-# Apply migrations
+#### Apply migrations
 python manage.py migrate
 
-# Run the server
+#### Run the server
 python manage.py runserver
