@@ -2,7 +2,7 @@
 This AI-driven system automates recruitment document processing by leveraging Google Cloud Vision and Gemini for advanced OCR and multilingual document understanding. It efficiently extracts and validates critical documents such as certificates and scorecards, ensuring accurate verification against user inputs.
 Built on a robust Django/Python backend, the platform features a secure, user-friendly dashboard for seamless management and monitoring. By eliminating manual errors and accelerating the verification workflow, this solution significantly enhances operational efficiency for organizations like RAC–DRDO.
 
-# 🔎 Core Capabilities
+## 🔎 Core Capabilities
 
 🔐 Secure User Access — Streamlined signup and login system for applicants ensuring data privacy
 📝 Comprehensive Form Intake — Capture detailed personal, educational, and professional information
